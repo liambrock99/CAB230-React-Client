@@ -58,7 +58,7 @@ export function Login(props) {
           class="pure-button pure-button-primary"
         />
       </form>
-      <div class="form-error center-text">{error}</div>
+      {error !== "" && <div class="form-error center-text">{error}</div>}
     </div>
   );
 }

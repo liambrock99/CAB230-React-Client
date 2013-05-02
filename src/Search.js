@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactTable from "react-table";
-import MapWrapper from "./Map.js";
 import "react-table/react-table.css";
 import {
   OffenceSelect,
@@ -42,6 +41,7 @@ export default function Search(props) {
       .then(res => {
         setError(null);
         console.log(res);
+        props.getResults(res.result);
         setResults(res.result);
       })
       .catch(err => {
@@ -87,16 +87,14 @@ export default function Search(props) {
           class="pure-button pure-button-primary"
         />
       </form>
-      {error == null ? (
-        <ReactTable
-          data={results}
-          columns={table_columns}
-          style={{ width: "80%", margin: "auto" }}
-        />
-      ) : (
-        <div>{error}</div>
-      )}
-      <MapWrapper data={results} />
+
+      {error !== null && <div class="form-error center-text">{error}</div>}
+
+      <ReactTable
+        data={results}
+        columns={table_columns}
+        style={{ width: "80%", margin: "auto" }}
+      />
     </div>
   );
 }

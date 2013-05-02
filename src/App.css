@@ -29,6 +29,7 @@
 
 .form-error {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .logout-btn {
@@ -40,4 +41,5 @@
 .select-custom {
   display: inline-block;
   width: 40%;
+  text-align: left;
 }
