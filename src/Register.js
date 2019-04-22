@@ -14,22 +14,22 @@ export function Register() {
             "Content-type": "application/x-www-form-urlencoded"
           }
         })
-        .then((response) => {
-          if (response.ok) {
-            setStatus("Successfully registered!")
-            return response.json();
+        .then((res) => {
+          if (res.ok) {
+            setStatus("Successfully registered!");
+            return res.json();
           }
-          response.json().then((text) => {
+          res.json().then((text) => {
             setStatus(text.message);
           })
-          throw new Error("Network response was not OK");
+          throw new Error(`Network response was not OK: ${res.status}`);
         })
-        .then((result) => {
-          console.log(result);
+        .then((res) => {
+          console.log(res);
         })
-        .catch((error) => {
-          console.log("Problem with fetch operation: ",  error.message);
-        })
+        .catch((err) => {
+          console.log("Problem with fetch operation: ",  err.message);
+        });
       }
 
     return (

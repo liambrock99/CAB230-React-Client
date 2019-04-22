@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,21 +14,21 @@ export function Login(props) {
                 "Content-type": "application/x-www-form-urlencoded"
             }
         })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
           }
-          response.json().then((text) => {
+          res.json().then((text) => {
             setError(text.message);
           })
-          throw new Error("Network response was not ok.");
+          throw new Error(`Network response was not OK: ${res.status}`);
         })
-        .then((result) => {
-          props.onLogin(result.token);
+        .then((res) => {
+          props.onLogin(res.token);
         })
-        .catch((error) => {
-          console.log("Problem with fetch operation: ", error.message);
-        })
+        .catch((err) => {
+          console.log("Problem with fetch operation: ", err.message);
+        });
       } 
 
     return (
@@ -38,8 +38,8 @@ export function Login(props) {
                 <input type="text" name="Email" value={email} onChange={e => setEmail(e.target.value)}></input>
                 <input type="password" name="Password" value={password} onChange={e => setPassword(e.target.value)}></input>
                 <input type="submit" value="Login"></input>
-            </form> 
-            <p>{error}</p>
+            </form>
+            <div>{error}</div>
         </div>
     )
 }

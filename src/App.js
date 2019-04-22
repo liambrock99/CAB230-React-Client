@@ -9,7 +9,7 @@ function App() {
   const onLogout = () => setJWT(null);
 		return (
 				<div>
-          {JWT == null ? <div> <Login onLogin={onLogin}/> <Register /> </div>: <Main token={JWT} onLogout={onLogout}/> }
+          {JWT == null ? <div><Login onLogin={onLogin}/><Register/></div> : <Main token={JWT} onLogout={onLogout}/>}
 				</div>
 		)
 }
