@@ -8,16 +8,18 @@ function getEndpoint(endpoint) {
 }
 
 export function OffenceSelect(props) {
-  const [offencesOptions, setOffencesOptions] = useState([{ value: "", label: "" }]);
+  const [offencesOptions, setOffencesOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    getEndpoint("offences").then(res => {
-      setOffencesOptions(
-        res.map(element => ({ value: element, label: element }))
-      );
-      setIsDisabled(false);
-    });
+    getEndpoint("offences")
+      .then(res => {
+        setOffencesOptions(
+          res.map(element => ({ value: element, label: element }))
+        );
+        setIsDisabled(false);
+      })
+      .catch(err => console.log(err.message));
   }, []);
 
   return (
@@ -30,14 +32,18 @@ export function OffenceSelect(props) {
 }
 
 export function AreaSelect(props) {
-  const [areasOptions, setAreasOptions] = useState([{ value: "", label: "" }]);
+  const [areasOptions, setAreasOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    getEndpoint("areas").then(res => {
-      setAreasOptions(res.map(element => ({ value: element, label: element })));
-      setIsDisabled(false);
-    });
+    getEndpoint("areas")
+      .then(res => {
+        setAreasOptions(
+          res.map(element => ({ value: element, label: element }))
+        );
+        setIsDisabled(false);
+      })
+      .catch(err => console.log(err.message));
   }, []);
 
   return (
@@ -51,14 +57,18 @@ export function AreaSelect(props) {
 }
 
 export function AgeSelect(props) {
-  const [agesOptions, setAgesOptions] = useState([{ value: "", label: "" }]);
+  const [agesOptions, setAgesOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    getEndpoint("ages").then(res => {
-      setAgesOptions(res.map(element => ({ value: element, label: element })));
-      setIsDisabled(false);
-    });
+    getEndpoint("ages")
+      .then(res => {
+        setAgesOptions(
+          res.map(element => ({ value: element, label: element }))
+        );
+        setIsDisabled(false);
+      })
+      .catch(err => console.log(err.message));
   }, []);
 
   return (
@@ -72,16 +82,18 @@ export function AgeSelect(props) {
 }
 
 export function GenderSelect(props) {
-  const [gendersOptions, setGendersOptions] = useState([{ value: "", label: "" }]);
+  const [gendersOptions, setGendersOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    getEndpoint("genders").then(res => {
-      setGendersOptions(
-        res.map(element => ({ value: element, label: element }))
-      );
-      setIsDisabled(false);
-    });
+    getEndpoint("genders")
+      .then(res => {
+        setGendersOptions(
+          res.map(element => ({ value: element, label: element }))
+        );
+        setIsDisabled(false);
+      })
+      .catch(err => console.log(err.message));
   }, []);
 
   return (
@@ -95,14 +107,18 @@ export function GenderSelect(props) {
 }
 
 export function YearSelect(props) {
-  const [yearsOptions, setYearsOptions] = useState([{ value: "", label: "" }]);
+  const [yearsOptions, setYearsOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    getEndpoint("years").then(res => {
-      setYearsOptions(res.map(element => ({ value: element, label: element })));
-      setIsDisabled(false);
-    });
+    getEndpoint("years")
+      .then(res => {
+        setYearsOptions(
+          res.map(element => ({ value: element, label: element }))
+        );
+        setIsDisabled(false);
+      })
+      .catch(err => console.log(err.message));
   }, []);
 
   return (

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Table } from "./Table.js";
+import { BarGraph } from "./Graphs.js";
 import {
   OffenceSelect,
   AreaSelect,
@@ -7,21 +9,23 @@ import {
   YearSelect,
   MonthSelect
 } from "./Select.js";
-import ReactTable from "react-table";
-import "react-table/react-table.css";
 
 export function Search(props) {
   const [results, setResults] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedOffence, setSelectedOffence] = useState("");
-  const [selectedAreas, setSelectedAreas] = useState("");
-  const [selectedAges, setSelectedAges] = useState("");
-  const [selectedGenders, setSelectedGenders] = useState("");
-  const [selectedYears, setSelectedYears] = useState("");
-  const [selectedMonths, setSelectedMonths] = useState("");
+  const [selectedOffence, setSelectedOffence] = useState('');
+  const [selectedAreas, setSelectedAreas] = useState('');
+  const [selectedAges, setSelectedAges] = useState('');
+  const [selectedGenders, setSelectedGenders] = useState('');
+  const [selectedYears, setSelectedYears] = useState('');
+  const [selectedMonths, setSelectedMonths] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (selectedOffence === '') {
+      alert('Please select an offence.')
+      return;
+    }
     const params = {
       method: "GET",
       headers: { Authorization: `Bearer ${props._token}` }
@@ -37,25 +41,15 @@ export function Search(props) {
       })
       .then(res => {
         setError(null);
+        console.log(res);
         setResults(res.result);
       })
       .catch(err => {
         console.log(
-          "There has been a problem with your fetch operation: " + err.message
+          `There has been a problem with your fetch operation: ${err.message}`
         );
       });
   };
-
-  const columns = [
-    {
-      Header: "Area",
-      accessor: "LGA"
-    },
-    {
-      Header: "Total",
-      accessor: "total"
-    }
-  ];
 
   return (
     <div>
@@ -66,13 +60,9 @@ export function Search(props) {
         <GenderSelect getSelected={setSelectedGenders} />
         <YearSelect getSelected={setSelectedYears} />
         <MonthSelect getSelected={setSelectedMonths} />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Search" />
       </form>
-      {error == null ? (
-        <ReactTable data={results} columns={columns} />
-      ) : (
-        <div>{error}</div>
-      )}
+      {results.length === 0 ? <div>Make a query to get started.</div> : <Table data={results}/>}
     </div>
   );
 }
