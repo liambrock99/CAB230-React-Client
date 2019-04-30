@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Table } from "./Table.js";
-import { BarGraph } from "./Graphs.js";
+import ReactTable from "react-table";
+import MapWrapper from "./Map.js";
+import "react-table/react-table.css";
 import {
   OffenceSelect,
   AreaSelect,
@@ -10,27 +11,26 @@ import {
   MonthSelect
 } from "./Select.js";
 
-export function Search(props) {
+export default function Search(props) {
   const [results, setResults] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedOffence, setSelectedOffence] = useState('');
-  const [selectedAreas, setSelectedAreas] = useState('');
-  const [selectedAges, setSelectedAges] = useState('');
-  const [selectedGenders, setSelectedGenders] = useState('');
-  const [selectedYears, setSelectedYears] = useState('');
-  const [selectedMonths, setSelectedMonths] = useState('');
+  const [selectedOffence, setSelectedOffence] = useState("");
+  const [selectedAreas, setSelectedAreas] = useState("");
+  const [selectedAges, setSelectedAges] = useState("");
+  const [selectedGenders, setSelectedGenders] = useState("");
+  const [selectedYears, setSelectedYears] = useState("");
+  const [selectedMonths, setSelectedMonths] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (selectedOffence === '') {
-      alert('Please select an offence.')
-      return;
-    }
+
     const params = {
       method: "GET",
       headers: { Authorization: `Bearer ${props._token}` }
     };
+
     const url = `https://cab230.hackhouse.sh/search?offence=${selectedOffence}&area=${selectedAreas}&age=${selectedAges}&gender=${selectedGenders}&year=${selectedYears}&month=${selectedMonths}`;
+
     fetch(encodeURI(url), params)
       .then(res => {
         if (res.ok) {
@@ -46,10 +46,21 @@ export function Search(props) {
       })
       .catch(err => {
         console.log(
-          `There has been a problem with your fetch operation: ${err.message}`
+          `There has been a problem with your fetch operation - ${err.message}`
         );
       });
   };
+
+  const table_columns = [
+    {
+      Header: "Area",
+      accessor: "LGA"
+    },
+    {
+      Header: "Total",
+      accessor: "total"
+    }
+  ];
 
   return (
     <div>
@@ -62,7 +73,12 @@ export function Search(props) {
         <MonthSelect getSelected={setSelectedMonths} />
         <input type="submit" value="Search" />
       </form>
-      {results.length === 0 ? <div>Make a query to get started.</div> : <Table data={results}/>}
+      {error == null ? (
+        <ReactTable data={results} columns={table_columns} />
+      ) : (
+        <div>{error}</div>
+      )}
+      <MapWrapper data={results} />
     </div>
   );
 }

@@ -7,6 +7,7 @@ export function Register() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     fetch("https://cab230.hackhouse.sh/register", {
       method: "POST",
       body: `email=${email}&password=${password}`,
@@ -15,21 +16,15 @@ export function Register() {
       }
     })
       .then(res => {
-        if (res.ok) {
-          setStatus("Successfully registered!");
+        if (res.status === 201 || res.status === 400) {
           return res.json();
         }
-        res.json().then(text => {
-          setStatus(text.message);
-        });
-        throw new Error(`Network response was not OK: ${res.status}`);
+        throw new Error(`Network response was was not OK: ${res.status}`);
       })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log("Problem with fetch operation: ", err.message);
-      });
+      .then(res => setStatus(res.message))
+      .catch(err =>
+        console.log(`Problem with fetch operation - ${err.message}`)
+      );
   };
 
   return (
