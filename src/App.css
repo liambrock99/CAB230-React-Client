@@ -1,33 +1,38 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#title {
+  font-size: 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.font {
+  font-family: Helvetica, Arial, "Times New Roman";
+}
+
+.center-text {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.center {
+  margin: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-title {
+  font-size: 30px;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.form-error {
+  margin-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logout-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

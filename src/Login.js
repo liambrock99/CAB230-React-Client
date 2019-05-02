@@ -36,23 +36,29 @@ export function Login(props) {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit} method="POST">
+      <div class="form-title font center-text">Login</div>
+      <form onSubmit={handleSubmit} class="pure-form center-text" method="POST">
         <input
           type="text"
-          name="Email"
+          placeholder="Email"
           value={email}
+          required
           onChange={e => setEmail(e.target.value)}
         />
         <input
           type="password"
-          name="Password"
+          placeholder="Password"
           value={password}
+          required
           onChange={e => setPassword(e.target.value)}
         />
-        <input type="submit" value="Login" />
+        <input
+          type="submit"
+          value="Login"
+          class="pure-button pure-button-primary"
+        />
       </form>
-      <div>{error}</div>
+      <div class="form-error center-text">{error}</div>
     </div>
   );
 }

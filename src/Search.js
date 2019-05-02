@@ -71,10 +71,18 @@ export default function Search(props) {
         <GenderSelect getSelected={setSelectedGenders} />
         <YearSelect getSelected={setSelectedYears} />
         <MonthSelect getSelected={setSelectedMonths} />
-        <input type="submit" value="Search" />
+        <input
+          type="submit"
+          value="Search"
+          class="pure-button pure-button-primary"
+        />
       </form>
       {error == null ? (
-        <ReactTable data={results} columns={table_columns} />
+        <ReactTable
+          data={results}
+          columns={table_columns}
+          style={{ width: "80%", margin: "auto" }}
+        />
       ) : (
         <div>{error}</div>
       )}

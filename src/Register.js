@@ -29,23 +29,29 @@ export function Register() {
 
   return (
     <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit} type="POST">
+      <div class="form-title font center-text">Register</div>
+      <form onSubmit={handleSubmit} class="pure-form center-text" type="POST">
         <input
           type="text"
-          name="Email"
+          placeholder="Email"
           value={email}
+          required
           onChange={e => setEmail(e.target.value)}
         />
         <input
           type="password"
-          name="Password"
+          placeholder="Password"
           value={password}
+          required
           onChange={e => setPassword(e.target.value)}
         />
-        <input type="submit" value="Register" />
+        <input
+          type="submit"
+          value="Register"
+          class="pure-button pure-button-primary"
+        />
       </form>
-      <p>{status}</p>
+      <div class="form-error center-text">{status}</div>
     </div>
   );
 }

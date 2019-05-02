@@ -1,12 +1,12 @@
 import React from "react";
-import { Map, Marker, Popup, TileLayer, CircleMarker } from "react-leaflet";
+import { Map, Popup, TileLayer, CircleMarker } from "react-leaflet";
 
 export default function MapWrapper(props) {
   return (
     <Map
       center={[-25.73, 134.48]}
       zoom={4}
-      style={{ height: "800px", width: "100%" }}
+      style={{ height: "800px", width: "80%", margin: "50px auto" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
