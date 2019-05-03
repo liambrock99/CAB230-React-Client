@@ -64,16 +64,26 @@ export default function Search(props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <OffenceSelect getSelected={setSelectedOffence} />
-        <AreaSelect getSelected={setSelectedAreas} />
-        <AgeSelect getSelected={setSelectedAges} />
-        <GenderSelect getSelected={setSelectedGenders} />
-        <YearSelect getSelected={setSelectedYears} />
-        <MonthSelect getSelected={setSelectedMonths} />
+      <form
+        onSubmit={handleSubmit}
+        style={{ "text-align": "center", "margin-bottom": "20px" }}
+      >
+        <div>
+          <OffenceSelect getSelected={setSelectedOffence} />
+          <AreaSelect getSelected={setSelectedAreas} />
+        </div>
+        <div>
+          <AgeSelect getSelected={setSelectedAges} />
+          <GenderSelect getSelected={setSelectedGenders} />
+        </div>
+        <div>
+          <YearSelect getSelected={setSelectedYears} />
+          <MonthSelect getSelected={setSelectedMonths} />
+        </div>
         <input
           type="submit"
           value="Search"
+          style={{ width: "80%" }}
           class="pure-button pure-button-primary"
         />
       </form>

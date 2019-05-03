@@ -27,6 +27,9 @@ export function OffenceSelect(props) {
       options={offencesOptions}
       onChange={val => props.getSelected(val.value)}
       isDisabled={isDisabled}
+      placeholder="Offence"
+      className="select-custom"
+      classNamePrefix="select-custom"
     />
   );
 }
@@ -52,6 +55,9 @@ export function AreaSelect(props) {
       isMulti={true}
       onChange={val => props.getSelected(val.map(e => e.value).join(","))}
       isDisabled={isDisabled}
+      placeholder="Area"
+      className="select-custom"
+      classNamePrefix="select-custom"
     />
   );
 }
@@ -77,6 +83,9 @@ export function AgeSelect(props) {
       isMulti={true}
       onChange={val => props.getSelected(val.map(e => e.value).join(","))}
       isDisabled={isDisabled}
+      placeholder="Age"
+      className="select-custom"
+      classNamePrefix="select-custom"
     />
   );
 }
@@ -102,6 +111,9 @@ export function GenderSelect(props) {
       isMulti={true}
       onChange={val => props.getSelected(val.map(e => e.value).join(","))}
       isDisabled={isDisabled}
+      placeholder="Gender"
+      className="select-custom"
+      classNamePrefix="select-custom"
     />
   );
 }
@@ -127,6 +139,9 @@ export function YearSelect(props) {
       isMulti={true}
       onChange={val => props.getSelected(val.map(e => e.value).join(","))}
       isDisabled={isDisabled}
+      placeholder="Year"
+      className="select-custom"
+      classNamePrefix="select-custom"
     />
   );
 }
@@ -188,6 +203,9 @@ export function MonthSelect(props) {
       options={months}
       isMulti={true}
       onChange={val => props.getSelected(val.map(e => e.value).join(","))}
+      placeholder="Month"
+      className="select-custom"
+      classNamePrefix="select-custom"
     />
   );
 }

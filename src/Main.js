@@ -7,10 +7,7 @@ export function Main(props) {
       <h1 id="title" class="font center-text">
         Queensland Crime Statistics Database
       </h1>
-      <button
-        onClick={props.onLogout}
-        class="pure-button pure-button-primary logout-btn"
-      >
+      <button onClick={props.onLogout} class="pure-button logout-btn">
         Logout
       </button>
       <Search _token={props.token} />
