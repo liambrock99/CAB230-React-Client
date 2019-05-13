@@ -51,7 +51,7 @@ export function Register() {
           class="pure-button pure-button-primary"
         />
       </form>
-      <div class="form-error center-text">{status}</div>
+      {status !== "" && <div class="form-error center-text">{status}</div>}
     </div>
   );
 }
