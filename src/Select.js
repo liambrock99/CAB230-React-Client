@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 function getEndpoint(endpoint) {
-  return fetch(`https://cab230.hackhouse.sh/${endpoint}`)
+  return fetch(`https://localhost:443/${endpoint}`)
     .then(res => res.json())
     .then(res => res[`${endpoint}`]);
 }

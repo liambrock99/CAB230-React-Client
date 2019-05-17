@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import { Login } from "./Login.js";
 import { Register } from "./Register.js";
-import { Main } from "./Main.js";
+import Main from "./Main.js";
+import ApiButtons from "./Buttons.js"
 
 function App() {
   const [JWT, setJWT] = useState(null);
@@ -22,6 +23,7 @@ function App() {
       ) : (
         <Main token={JWT} onLogout={onLogout} />
       )}
+      <ApiButtons/>
     </div>
   );
 }

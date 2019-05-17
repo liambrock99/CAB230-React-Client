@@ -8,7 +8,7 @@ export function Login(props) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch("https://cab230.hackhouse.sh/login", {
+    fetch("https://localhost:443/login", {
       method: "POST",
       body: `email=${email}&password=${password}`,
       headers: {
@@ -27,7 +27,7 @@ export function Login(props) {
         throw new Error(`Network response was not OK: ${res.status}`);
       })
       .then(res => {
-        props.onLogin(res.token);
+        props.onLogin(res.access_token);
       })
       .catch(err => {
         console.log(`Problem with fetch operation - ${err.message}`);

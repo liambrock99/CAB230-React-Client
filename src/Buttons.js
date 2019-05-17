@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function ApiButtons() {
+export default function ApiButtons() {
   return (
     <div>
       <Offences />
@@ -13,7 +13,7 @@ export function ApiButtons() {
 }
 
 function getEndpoint(endpoint) {
-  return fetch(`https://cab230.hackhouse.sh/${endpoint}`)
+  return fetch(`https://localhost:443/${endpoint}`)
     .then(res => res.json())
     .then(res => res[`${endpoint}`]);
 }

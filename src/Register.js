@@ -8,7 +8,7 @@ export function Register() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch("https://cab230.hackhouse.sh/register", {
+    fetch("https://localhost:443/register", {
       method: "POST",
       body: `email=${email}&password=${password}`,
       headers: {

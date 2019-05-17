@@ -3,7 +3,7 @@ import MapWrapper from "./Map.js";
 import BarGraph from "./Graph";
 import Search from "./Search.js";
 
-export function Main(props) {
+export default function Main(props) {
   const [searchResults, setSearchResults] = useState([]);
   const [displayMap, setDisplayMap] = useState(false);
   const [displayGraph, setDisplayGraph] = useState(false);

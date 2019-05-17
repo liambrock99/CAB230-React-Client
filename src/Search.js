@@ -28,7 +28,7 @@ export default function Search(props) {
       headers: { Authorization: `Bearer ${props._token}` }
     };
 
-    const url = `https://cab230.hackhouse.sh/search?offence=${selectedOffence}&area=${selectedAreas}&age=${selectedAges}&gender=${selectedGenders}&year=${selectedYears}&month=${selectedMonths}`;
+    const url = `https://localhost:443/search?offence=${selectedOffence}&area=${selectedAreas}&age=${selectedAges}&gender=${selectedGenders}&year=${selectedYears}&month=${selectedMonths}`;
 
     fetch(encodeURI(url), params)
       .then(res => {
