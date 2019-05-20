@@ -35,7 +35,7 @@ export default function Search(props) {
         if (res.ok) {
           return res.json();
         }
-        res.json().then(res => setError(res.error));
+        res.json().then(res => setError(res.error)).catch(err => console.log(err.message));
         throw new Error(`Network response was not OK:  ${res.status}`);
       })
       .then(res => {
