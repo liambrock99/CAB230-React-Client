@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function Login(props) {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -8,7 +8,7 @@ export function Login(props) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch("https://localhost:443/login", {
+    fetch("https://cab230.hackhouse.sh/login", {
       method: "POST",
       body: `email=${email}&password=${password}`,
       headers: {
@@ -19,11 +19,13 @@ export function Login(props) {
         if (res.ok) {
           return res.json();
         }
+
         if (res.status === 401) {
-          res.json().then(text => {
-            setError(text.message);
+          res.json().then(res => {
+            setError(res.message);
           });
         }
+
         throw new Error(`Network response was not OK: ${res.status}`);
       })
       .then(res => {

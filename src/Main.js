@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import MapWrapper from "./Map.js";
 import BarGraph from "./Graph";
 import Search from "./Search.js";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
 
 export default function Main(props) {
   const [searchResults, setSearchResults] = useState([]);
@@ -18,6 +22,17 @@ export default function Main(props) {
     setDisplayMap(true);
   };
 
+  const table_columns = [
+    {
+      Header: "Area",
+      accessor: "LGA"
+    },
+    {
+      Header: "Total",
+      accessor: "total"
+    }
+  ];
+
   return (
     <div>
       <h1 id="title" class="font center-text">
@@ -26,7 +41,13 @@ export default function Main(props) {
       <button onClick={props.onLogout} class="pure-button logout-btn">
         Logout
       </button>
+     
       <Search _token={props.token} getResults={setSearchResults} />
+      <ReactTable
+        data={searchResults}
+        columns={table_columns}
+        style={{ width: "80%", margin: "auto" }}
+      />
       <div class="center-text">
         <button onClick={graph} class="pure-button">
           Graph

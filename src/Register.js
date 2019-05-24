@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function Register() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
@@ -8,7 +8,7 @@ export function Register() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch("https://localhost:443/register", {
+    fetch("https://cab230.hackhouse.sh/register", {
       method: "POST",
       body: `email=${email}&password=${password}`,
       headers: {

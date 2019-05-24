@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactTable from "react-table";
 import "react-table/react-table.css";
 import {
   OffenceSelect,
@@ -11,7 +10,6 @@ import {
 } from "./Select.js";
 
 export default function Search(props) {
-  const [results, setResults] = useState([]);
   const [error, setError] = useState(null);
   const [selectedOffence, setSelectedOffence] = useState("");
   const [selectedAreas, setSelectedAreas] = useState("");
@@ -28,21 +26,26 @@ export default function Search(props) {
       headers: { Authorization: `Bearer ${props._token}` }
     };
 
-    const url = `https://localhost:443/search?offence=${selectedOffence}&area=${selectedAreas}&age=${selectedAges}&gender=${selectedGenders}&year=${selectedYears}&month=${selectedMonths}`;
+    const query_params = `offence=${selectedOffence}&area=${selectedAreas}&age=${selectedAges}&gender=${selectedGenders}&year=${selectedYears}&month=${selectedMonths}`;
+    const url = "https://cab230.hackhouse.sh/search?" + query_params;
 
     fetch(encodeURI(url), params)
       .then(res => {
         if (res.ok) {
           return res.json();
+        } else if (res.status === 400 || res.status === 401) {
+          res
+            .json()
+            .then(res => setError(res.error))
+            .catch(err => console.log(err.message));
         }
-        res.json().then(res => setError(res.error)).catch(err => console.log(err.message));
         throw new Error(`Network response was not OK:  ${res.status}`);
       })
       .then(res => {
         setError(null);
         console.log(res);
-        props.getResults(res.result);
-        setResults(res.result);
+        const results = res.result.filter(e => e.total > 0);
+        props.getResults(results);
       })
       .catch(err => {
         console.log(
@@ -50,17 +53,6 @@ export default function Search(props) {
         );
       });
   };
-
-  const table_columns = [
-    {
-      Header: "Area",
-      accessor: "LGA"
-    },
-    {
-      Header: "Total",
-      accessor: "total"
-    }
-  ];
 
   return (
     <div>
@@ -89,12 +81,6 @@ export default function Search(props) {
       </form>
 
       {error !== null && <div class="form-error center-text">{error}</div>}
-
-      <ReactTable
-        data={results}
-        columns={table_columns}
-        style={{ width: "80%", margin: "auto" }}
-      />
     </div>
   );
 }
