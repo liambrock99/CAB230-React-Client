@@ -1,7 +1,7 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { HorizontalBar } from "react-chartjs-2";
 
-export default function BarGraph(props) {
+export default function GraphWrapper(props) {
   const getGraphData = () => {
     const labels = props.data.map(e => e.LGA);
     const data = props.data.map(e => e.total);
@@ -18,5 +18,5 @@ export default function BarGraph(props) {
     };
   };
 
-  return <Bar data={getGraphData} />;
+  return <HorizontalBar data={getGraphData} />;
 }
