@@ -12,11 +12,12 @@ export default function GraphWrapper(props) {
         {
           label: "Total",
           data: data,
-          backgroundColor: "red"
+          backgroundColor: "#25e3ed"
         }
       ]
     };
   };
 
-  return <HorizontalBar data={getGraphData} />;
+  return <HorizontalBar data={getGraphData} height={1000} options={{maintainAspectRatio: false}}/>;
+  
 }

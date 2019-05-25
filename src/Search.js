@@ -58,7 +58,7 @@ export default function Search(props) {
     <div>
       <form
         onSubmit={handleSubmit}
-        style={{ "text-align": "center", "margin-bottom": "20px" }}
+        style={{ textAlign: "center", marginBottom: "20px" }}
       >
         <div>
           <OffenceSelect getSelected={setSelectedOffence} />
@@ -76,11 +76,11 @@ export default function Search(props) {
           type="submit"
           value="Search"
           style={{ width: "80%" }}
-          class="pure-button pure-button-primary"
+          className="pure-button pure-button-primary"
         />
       </form>
 
-      {error !== null && <div class="form-error center-text">{error}</div>}
+      {error !== null && <div className="form-error center-text">{error}</div>}
     </div>
   );
 }

@@ -13,7 +13,7 @@ function App() {
     <div>
       {JWT == null ? (
         <div>
-          <h1 id="title" class="font center-text">
+          <h1 id="title" className="font center-text">
             Queensland Crime Statistics Database
           </h1>
           <Login onLogin={onLogin} />

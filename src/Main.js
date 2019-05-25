@@ -23,32 +23,29 @@ export default function Main(props) {
 
   return (
     <div>
-      <h1 id="title" class="font center-text">
+      <h1 id="title" className="font center-text">
         Queensland Crime Statistics Database
       </h1>
 
-      <button onClick={props.onLogout} class="pure-button logout-btn">
+      <button onClick={props.onLogout} className="pure-button logout-btn">
         Logout
       </button>
 
       <Search _token={props.token} getResults={setSearchResults} />
 
-      <Tabs style={{ width: "80%", margin: "auto" }}>
+      <Tabs style={{margin: "auto", width: "90%"}}>
         <TabList>
           <Tab>Table View</Tab>
           <Tab>Map View</Tab>
           <Tab>Graph View</Tab>
         </TabList>
         <TabPanel>
-          <ReactTable
-            data={searchResults}
-            columns={table_columns}
-          />
+          <ReactTable data={searchResults} columns={table_columns} />
         </TabPanel>
         <TabPanel>
           <MapWrapper
             data={searchResults}
-            style={{ height: "800px"}}
+            style={{ height: "800px" }}
             zoom={4}
             center={[-25.73, 134.48]}
           />

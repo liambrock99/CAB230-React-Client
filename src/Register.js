@@ -29,13 +29,14 @@ export default function Register() {
 
   return (
     <div>
-      <div class="form-title font center-text">Register</div>
-      <form onSubmit={handleSubmit} class="pure-form center-text" type="POST">
+      <div className="form-title font center-text">Register</div>
+      <form onSubmit={handleSubmit} className="pure-form center-text" type="POST">
         <input
           type="text"
           placeholder="Email"
           value={email}
           required
+          autoComplete="email"
           onChange={e => setEmail(e.target.value)}
         />
         <input
@@ -43,15 +44,16 @@ export default function Register() {
           placeholder="Password"
           value={password}
           required
+          autoComplete="current-password"
           onChange={e => setPassword(e.target.value)}
         />
         <input
           type="submit"
           value="Register"
-          class="pure-button pure-button-primary"
+          className="pure-button pure-button-primary"
         />
       </form>
-      {status !== "" && <div class="form-error center-text">{status}</div>}
+      {status !== "" && <div className="form-error center-text">{status}</div>}
     </div>
   );
 }

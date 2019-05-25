@@ -38,13 +38,14 @@ export default function Login(props) {
 
   return (
     <div>
-      <div class="form-title font center-text">Login</div>
-      <form onSubmit={handleSubmit} class="pure-form center-text" method="POST">
+      <div className="form-title font center-text">Login</div>
+      <form onSubmit={handleSubmit} className="pure-form center-text" method="POST">
         <input
           type="text"
           placeholder="Email"
           value={email}
           required
+          autoComplete="email"
           onChange={e => setEmail(e.target.value)}
         />
         <input
@@ -52,15 +53,16 @@ export default function Login(props) {
           placeholder="Password"
           value={password}
           required
+          autoComplete="current-password"
           onChange={e => setPassword(e.target.value)}
         />
         <input
           type="submit"
           value="Login"
-          class="pure-button pure-button-primary"
+          className="pure-button pure-button-primary"
         />
       </form>
-      {error !== "" && <div class="form-error center-text">{error}</div>}
+      {error !== "" && <div className="form-error center-text">{error}</div>}
     </div>
   );
 }

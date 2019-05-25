@@ -20,14 +20,12 @@ export default function MapWrapper(props) {
           />
         </LayersControl.BaseLayer>
         <LayersControl.Overlay name="Heatmap" checked>
-          <FeatureGroup color="Blue">
-            <HeatmapLayer
-              points={props.data}
-              longitudeExtractor={e => e.lng}
-              latitudeExtractor={e => e.lat}
-              intensityExtractor={e => (e.total )}
-            />
-          </FeatureGroup>
+          <HeatmapLayer
+            points={props.data}
+            longitudeExtractor={e => e.lng}
+            latitudeExtractor={e => e.lat}
+            intensityExtractor={e => e.total}
+          />
         </LayersControl.Overlay>
         <LayersControl.Overlay name="Markers">
           <FeatureGroup>
