@@ -36,7 +36,7 @@ export default function Search(props) {
         } else if (res.status === 400 || res.status === 401) {
           res
             .json()
-            .then(res => setError(res.error))
+            .then(res => setError(res.message))
             .catch(err => console.log(err.message));
         }
         throw new Error(`Network response was not OK:  ${res.status}`);

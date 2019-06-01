@@ -8,7 +8,7 @@ export default function Register() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch("https://cab230.hackhouse.sh/register", {
+    fetch("https://localhost:443/register", {
       method: "POST",
       body: `email=${email}&password=${password}`,
       headers: {
@@ -35,7 +35,6 @@ export default function Register() {
           type="text"
           placeholder="Email"
           value={email}
-          required
           autoComplete="email"
           onChange={e => setEmail(e.target.value)}
         />
@@ -43,7 +42,6 @@ export default function Register() {
           type="password"
           placeholder="Password"
           value={password}
-          required
           autoComplete="current-password"
           onChange={e => setPassword(e.target.value)}
         />
