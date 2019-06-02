@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+/**
+ * Renders a Register form
+ * Fetches /register endpoint upon submit
+ */
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +19,7 @@ export default function Register() {
         "Content-type": "application/x-www-form-urlencoded"
       }
     })
+      // HTTP 201/400 responses contain a useful message for the user
       .then(res => {
         if (res.status === 201 || res.status === 400) {
           return res.json();
@@ -30,7 +35,11 @@ export default function Register() {
   return (
     <div>
       <div className="form-title font center-text">Register</div>
-      <form onSubmit={handleSubmit} className="pure-form center-text" type="POST">
+      <form
+        onSubmit={handleSubmit}
+        className="pure-form center-text"
+        type="POST"
+      >
         <input
           type="text"
           placeholder="Email"

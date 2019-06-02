@@ -7,9 +7,16 @@ import "react-table/react-table.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
+/**
+ * Renders the Main page of the application.
+ * 
+ * @param {} props - token prop (JWT for user authentication in <Search>)
+ */
 export default function Main(props) {
+  // Search results passed up from <Search>
   const [searchResults, setSearchResults] = useState([]);
 
+  // Table columns for <ReactTable>
   const table_columns = [
     {
       Header: "Area",
@@ -33,7 +40,8 @@ export default function Main(props) {
 
       <Search _token={props.token} getResults={setSearchResults} />
 
-      <Tabs style={{margin: "auto", width: "90%"}}>
+      {/** Render <ReactTable>, <MapWrapper>, <GraphWrapper> in Tabs */}
+      <Tabs style={{ margin: "auto", width: "90%" }}>
         <TabList>
           <Tab>Table View</Tab>
           <Tab>Map View</Tab>

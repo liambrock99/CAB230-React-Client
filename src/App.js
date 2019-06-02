@@ -11,6 +11,7 @@ function App() {
 
   return (
     <div>
+      {/** Render <Main> if JWT is non-null, otherwise render <Login>, <Register> */}
       {JWT == null ? (
         <div>
           <h1 id="title" className="font center-text">
@@ -20,7 +21,7 @@ function App() {
           <Register />
         </div>
       ) : (
-        <Main token={JWT} onLogout={onLogout} />
+        <Main token={JWT} onLogout={onLogout} /> // Propagate JWT token down
       )}
     </div>
   );

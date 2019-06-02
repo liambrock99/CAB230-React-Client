@@ -9,6 +9,10 @@ import {
   FeatureGroup
 } from "react-leaflet";
 
+/**
+ * A wrapper for react-leaflet <Map>
+ * Only purpose being to reduce clutter in <Main>
+ */
 export default function MapWrapper(props) {
   return (
     <Map center={props.center} zoom={props.zoom} style={props.style}>
@@ -19,6 +23,8 @@ export default function MapWrapper(props) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
         </LayersControl.BaseLayer>
+
+        {/** Heatmap Layer */}
         <LayersControl.Overlay name="Heatmap" checked>
           <HeatmapLayer
             points={props.data}
@@ -27,7 +33,10 @@ export default function MapWrapper(props) {
             intensityExtractor={e => e.total}
           />
         </LayersControl.Overlay>
+
+        {/** Marker layer */}
         <LayersControl.Overlay name="Markers">
+          {/** Wrap all markers in one FeatureGroup */}
           <FeatureGroup>
             {props.data
               .filter(e => e.lat !== null && e.lng !== null) // remove any entries with null lat/lngs that would break the app

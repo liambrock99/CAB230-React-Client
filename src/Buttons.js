@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+/**
+ * Unused buttons
+ */
+
 export default function ApiButtons() {
   return (
     <div>

@@ -9,31 +9,43 @@ import {
   MonthSelect
 } from "./Select.js";
 
+/**
+ * Renders a form that accepts search parameters through dropdowns
+ * Fetches the /search endpoint with JWT authentication
+ * Search results are passed to the parent component through props
+ */
 export default function Search(props) {
-  const [error, setError] = useState(null);
+  /**
+   * Store user selection in state
+   * from <Select> wrappers
+   */
   const [selectedOffence, setSelectedOffence] = useState("");
   const [selectedAreas, setSelectedAreas] = useState("");
   const [selectedAges, setSelectedAges] = useState("");
   const [selectedGenders, setSelectedGenders] = useState("");
   const [selectedYears, setSelectedYears] = useState("");
   const [selectedMonths, setSelectedMonths] = useState("");
+  const [error, setError] = useState(null);
+
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    
+    // Include Authorization header for authentication
     const params = {
       method: "GET",
       headers: { Authorization: `Bearer ${props._token}` }
     };
 
+    // Construct the query
     const query_params = `offence=${selectedOffence}&area=${selectedAreas}&age=${selectedAges}&gender=${selectedGenders}&year=${selectedYears}&month=${selectedMonths}`;
-    const url = "https://cab230.hackhouse.sh/search?" + query_params;
+    const url = "https://localhost:443/search?" + query_params;
 
     fetch(encodeURI(url), params)
       .then(res => {
         if (res.ok) {
           return res.json();
-        } else if (res.status === 400 || res.status === 401) {
+        } else if (res.status === 400 || res.status === 401) { //  Check for HTTP code 400/401 which contain useful messages
           res
             .json()
             .then(res => setError(res.message))
@@ -44,8 +56,8 @@ export default function Search(props) {
       .then(res => {
         setError(null);
         console.log(res);
-        const results = res.result.filter(e => e.total > 0);
-        props.getResults(results);
+        const results = res.result.filter(e => e.total > 0); // Filter out search results where total offences = 0
+        props.getResults(results); // Pass search results up to <Main>
       })
       .catch(err => {
         console.log(

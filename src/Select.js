@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
+/**
+ * Fetches the specified endpoint
+ * and returns a promise
+ * @param {*} endpoint - The endpoint to fetch
+ */
 function getEndpoint(endpoint) {
-  return fetch(`https://cab230.hackhouse.sh/${endpoint}`)
+  return fetch(`https://localhost:443/${endpoint}`)
     .then(res => res.json())
-    .then(res => res[`${endpoint}`]);
+    .then(res => res[`${endpoint}`]); // Get value by key
 }
 
+/**
+ * A <Select> wrapper that displays the list of offences
+ */
 export function OffenceSelect(props) {
   const [offencesOptions, setOffencesOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
+  // Upon rendering fetch the relevant endpoint
   useEffect(() => {
     getEndpoint("offences")
       .then(res => {
         setOffencesOptions(
-          res.map(element => ({ value: element, label: element }))
+          res.map(element => ({ value: element, label: element })) // Store results in state to pass to <Select>
         );
         setIsDisabled(false);
       })
@@ -24,7 +33,7 @@ export function OffenceSelect(props) {
 
   return (
     <Select
-      options={offencesOptions}
+      options={offencesOptions} 
       onChange={val => props.getSelected(val.value)}
       isDisabled={isDisabled}
       placeholder="Offence"
@@ -34,6 +43,9 @@ export function OffenceSelect(props) {
   );
 }
 
+/**
+ * A <Select> wrapper that displays the list of areas
+ */
 export function AreaSelect(props) {
   const [areasOptions, setAreasOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -62,6 +74,9 @@ export function AreaSelect(props) {
   );
 }
 
+/**
+ * A <Select> wrapper that displays the list of ages
+ */
 export function AgeSelect(props) {
   const [agesOptions, setAgesOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -90,6 +105,9 @@ export function AgeSelect(props) {
   );
 }
 
+/**
+ * A <Select> wrapper that displays the list of genders
+ */
 export function GenderSelect(props) {
   const [gendersOptions, setGendersOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -118,6 +136,9 @@ export function GenderSelect(props) {
   );
 }
 
+/**
+ * A <Select> wrapper that displays the list of years
+ */
 export function YearSelect(props) {
   const [yearsOptions, setYearsOptions] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -146,6 +167,9 @@ export function YearSelect(props) {
   );
 }
 
+/**
+ * A <Select> wrapper that displays the list of months
+ */
 export function MonthSelect(props) {
   const months = [
     {

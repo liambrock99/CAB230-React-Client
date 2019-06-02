@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+/**
+ * Renders a Login form
+ * Fetches the /login endpoint upon submit
+ */
 export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,7 +12,7 @@ export default function Login(props) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch("https://cab230.hackhouse.sh/login", {
+    fetch("https://localhost:443/login", {
       method: "POST",
       body: `email=${email}&password=${password}`,
       headers: {
@@ -20,6 +24,7 @@ export default function Login(props) {
           return res.json();
         }
 
+        // HTTP 401 response contains a useful message for the user
         if (res.status === 401) {
           res.json().then(res => {
             setError(res.message);
@@ -39,7 +44,11 @@ export default function Login(props) {
   return (
     <div>
       <div className="form-title font center-text">Login</div>
-      <form onSubmit={handleSubmit} className="pure-form center-text" method="POST">
+      <form
+        onSubmit={handleSubmit}
+        className="pure-form center-text"
+        method="POST"
+      >
         <input
           type="text"
           placeholder="Email"
